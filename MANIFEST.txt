@@ -1,0 +1,2 @@
+Main-Class: presentation/AutomataGUI
+Class-Path: bin/
