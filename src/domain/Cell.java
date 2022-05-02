@@ -1,4 +1,5 @@
 package domain;
+import java.io.Serializable;
 import java.util.*;
 import java.awt.Color;
 
@@ -6,7 +7,7 @@ import java.awt.Color;
 <b>(automata,row,column,age,state,nextState, color)</b><br>
 <br>
  */
-public class Cell extends Agent implements Item{
+public class Cell extends Agent implements Item, Serializable {
     protected char nextState;
     protected Color color;
     protected CellularAutomata automata;

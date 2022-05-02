@@ -130,19 +130,23 @@ public class AutomataGUI extends JFrame implements ActionListener{
      * Genera un JFileChooser
      */
     private void opcionAbir(){
-
+        System.out.println(automata.getItem(5,5).isAlive());
         try {
             archivos = new JFileChooser();
             archivos.showOpenDialog(this);
-            File archivosF =archivos.getSelectedFile();
-            automata.abra(archivosF);
+            //File archivosF =archivos.getSelectedFile();
             String nombre = archivos.getSelectedFile()+"";
-            if (!nombre.equals(null+"")){
-                JOptionPane.showMessageDialog(this,"El elemento está en construcción, se está guardando un archivo\n" + nombre,"Guardar",
-                        1,null);
-            }
+            automata = automata.abra00(nombre);
+            System.out.println(automata.getItem(5,5).isAlive());
+            photo.repaint();
+            //if (!nombre.equals(null+"")){
+              //  JOptionPane.showMessageDialog(this,"El elemento está en construcción, se está guardando un archivo\n" + nombre,"Guardar",
+                    //    1,null);
+            //}
         } catch (AutomataException e){
                 System.out.println(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
@@ -155,20 +159,23 @@ public class AutomataGUI extends JFrame implements ActionListener{
         try {
             archivos = new JFileChooser();
             archivos.showSaveDialog(this);
-            File archivosF =archivos.getSelectedFile();
-            automata.guarde(archivosF);
             String nombre = archivos.getSelectedFile()+"";
+            //File archivosF =archivos.getSelectedFile();
+            automata.guarde00(nombre);
             if (!nombre.equals(null+"")){
                 JOptionPane.showMessageDialog(this,"El elemento está en construcción, se está guardando un archivo\n" + nombre,"Guardar",
                         1,null);
             }
         } catch (AutomataException e){
             System.out.println(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
+
     /**
-     * Evento que se realiza cuando se da clic en el botón de guardar
+     * Evento que se realiza cuando se da clic en el botón de guardar9
      * Genera un JFileChooser
      */
     private void opcionExportar(){
@@ -186,8 +193,8 @@ public class AutomataGUI extends JFrame implements ActionListener{
         } catch (AutomataException e){
             System.out.println(e.getMessage());
         }
-
     }
+
     /**
      * Evento que se realiza cuando se da clic en el botón de guardar
      * Genera un JFileChooser

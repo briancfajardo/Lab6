@@ -1,5 +1,5 @@
 package domain;
-import java.io.File;
+import java.io.*;
 import java.util.*;
 import java.awt.Color;
 
@@ -12,7 +12,7 @@ import java.awt.Color;
  * @author Andrea Durán
  * @version 19/03/2022
  */
-public class CellularAutomata{
+public class CellularAutomata implements Serializable{
     static private int LENGTH=30;
     private Item[][] automata;
     
@@ -38,8 +38,13 @@ public class CellularAutomata{
         if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
     }
 
-    public void abra00(File archivo) throws AutomataException{
+    public CellularAutomata abra00(String archivo) throws Exception{
         if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
+        FileInputStream inFile = new FileInputStream(archivo);
+        ObjectInputStream inObject = new ObjectInputStream(inFile);
+        CellularAutomata nuevo = (CellularAutomata)inObject.readObject();
+        inObject.close();
+        return nuevo;
     }
 
 
@@ -56,14 +61,18 @@ public class CellularAutomata{
      * Método que guarda un arhivo en lenguaje no natural, según la descripción del objeto
      * @param -File archivo
      */
-    public CellularAutomata guarde00(File archivo) throws AutomataException{
+    public void guarde00(String archivo) throws Exception{
         if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
-        return null;
+        FileOutputStream outFile = new FileOutputStream(archivo);
+        ObjectOutputStream outObject = new ObjectOutputStream(outFile);
+        outObject.writeObject(this);
+        outObject.close();
     }
 
 
     /**
-     * Método que importa un arhivo en lenguaje natural, según la descripción del objeto
+     * Método que importa un arhivo en lenguaje natural, según la
+     * descripción del objeto
      * @param -File archivo
      */
     public void importe(File archivo) throws AutomataException{
