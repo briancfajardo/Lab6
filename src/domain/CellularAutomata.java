@@ -34,11 +34,11 @@ public class CellularAutomata implements Serializable{
      * Método que abre un arhivo en lenguaje no natural, según la descripción del objeto
      * @param -File archivo
      */
-    public void abra(File archivo) throws AutomataException{
+    public void abra00(File archivo) throws AutomataException{
         if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
     }
 
-    public CellularAutomata abra00(String archivo) throws Exception{
+    public CellularAutomata abra(String archivo) throws Exception{
         if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
         FileInputStream inFile = new FileInputStream(archivo);
         ObjectInputStream inObject = new ObjectInputStream(inFile);
@@ -52,7 +52,7 @@ public class CellularAutomata implements Serializable{
      * Método que guarda un arhivo en lenguaje no natural, según la descripción del objeto
      * @param -File archivo
      */
-    public void guarde(File archivo) throws AutomataException{
+    public void guarde00(File archivo) throws AutomataException{
         if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
     }
 
@@ -61,7 +61,7 @@ public class CellularAutomata implements Serializable{
      * Método que guarda un arhivo en lenguaje no natural, según la descripción del objeto
      * @param -File archivo
      */
-    public void guarde00(String archivo) throws Exception{
+    public void guarde(String archivo) throws Exception{
         if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
         FileOutputStream outFile = new FileOutputStream(archivo);
         ObjectOutputStream outObject = new ObjectOutputStream(outFile);
