@@ -67,5 +67,14 @@ public class Person extends Agent implements Item, Serializable
     public final Color getColor(){
         return color;
     }
+
+    public String toString(){
+        String texto = "";
+        texto += "clase: " + this.getClass() + "\n";
+        texto += "shape: " + shape + "\n";
+        texto += "nextState: " + String.valueOf(nextState) + "\n";
+        texto += "color: " + color + "\n";
+        return texto;
+    }
 }
 

@@ -47,7 +47,7 @@ public class AutomataGUI extends JFrame implements ActionListener{
         
         //automata.createInquieta(8,8);
         
-        //automata.someItemBulb("suroeste",0,29);
+        //
         //automata.someItemBulb("noreste",29,0);
         
         //automata.someItemColorin("Andrea",15,20);
@@ -182,16 +182,17 @@ public class AutomataGUI extends JFrame implements ActionListener{
 
         try {
             archivos = new JFileChooser();
-            archivos.showSaveDialog(this);
-            File archivosF =archivos.getSelectedFile();
-            automata.exporte(archivosF);
+            archivos.showDialog(this, "Exportar");
             String nombre = archivos.getSelectedFile()+"";
-            if (!nombre.equals(null+"")){
-                JOptionPane.showMessageDialog(this,"El elemento está en construcción, se está guardando un archivo\n" + nombre,"Guardar",
-                        1,null);
-            }
+            automata.exporte(nombre);
+            //if (!nombre.equals(null+"")){
+              //  JOptionPane.showMessageDialog(this,"El elemento está en construcción, se está guardando un archivo\n" + nombre,"Guardar",
+                //        1,null);
+            //}
         } catch (AutomataException e){
             System.out.println(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -202,16 +203,18 @@ public class AutomataGUI extends JFrame implements ActionListener{
     private void opcionImportar(){
         try {
             archivos = new JFileChooser();
-            archivos.showOpenDialog(this);
-            File archivosF =archivos.getSelectedFile();
-            automata.importe(archivosF);
+            archivos.showDialog(this, "Importar");
             String nombre = archivos.getSelectedFile()+"";
-            if (!nombre.equals(null+"")){
-                JOptionPane.showMessageDialog(this,"El elemento está en construcción, se está guardando un archivo\n" + nombre,"Guardar",
-                        1,null);
-            }
+            String texto = automata.importe(nombre);
+            System.out.println(texto);
+            //if (!nombre.equals(null+"")){
+              //  JOptionPane.showMessageDialog(this,"El elemento está en construcción, se está guardando un archivo\n" + nombre,"Guardar",
+                //        1,null);
+            //}
         } catch (AutomataException e){
             System.out.println(e.getMessage());
+        } catch (Exception e){
+            System.out.println("No se encontró el archivo");
         }
 
     }

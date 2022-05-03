@@ -31,6 +31,7 @@ public class CellularAutomata implements Serializable{
         change(1,1);
         createInquieta("agamenon",3,2);
         createInquieta("venus",10,10);
+        someItemBulb("suroeste",0,29);
     }
 
 
@@ -80,8 +81,25 @@ public class CellularAutomata implements Serializable{
      * descripción del objeto
      * @param -File archivo
      */
-    public void importe(File archivo) throws AutomataException{
+    public void importe00 (File archivo) throws AutomataException{
         if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
+    }
+
+    public String importe (String archivo) throws Exception{
+        if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
+        String texto = "";
+        BufferedReader bf = new BufferedReader(new FileReader(archivo));
+        String temp = "";
+        String line = bf.readLine();
+        //String bfRead;
+
+        while (line!= null){
+            //line = line.trim();
+            temp += line + "\n"; //guardar el texto del archivo
+            line = bf.readLine();
+        }
+
+        return temp;
     }
 
 
@@ -89,9 +107,27 @@ public class CellularAutomata implements Serializable{
      * Método que importa un arhivo en lenguaje natural, según la descripción del objeto
      * @param -File archivo
      */
-    public void exporte(File archivo) throws AutomataException{
+    public void exporte00(File archivo) throws AutomataException{
         if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
     }
+
+    public void exporte(String archivo) throws Exception{
+        if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
+        PrintWriter pw = new PrintWriter(new FileOutputStream(archivo));
+        pw.println("Dirección automata : " + this.automata);
+        pw.println("Longitud: " + this.LENGTH);
+        pw.println("Valor posiciones : \n");
+        int i, j;
+        for (i = 0; i < 30; i ++){
+            for (j = 0; j < 30; j ++){
+                if (getItem(i,j) != null) {
+                    pw.println("Posición " + i + " " + j + " \n" + getItem(i, j).toString());
+                }
+            }
+        }
+        pw.close();
+    }
+
 
     /**
      * Método que genera un nuevo objeto CellularAutomata
