@@ -43,7 +43,17 @@ public class CellularAutomata implements Serializable{
         if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
     }
 
-    public CellularAutomata abra(String archivo) throws Exception{
+    public CellularAutomata abra01(String archivo) throws Exception {
+        if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
+        FileInputStream inFile = new FileInputStream(archivo);
+        ObjectInputStream inObject = new ObjectInputStream(inFile);
+        CellularAutomata nuevo = (CellularAutomata)inObject.readObject();
+        System.out.println(nuevo);
+        inObject.close();
+        return nuevo;
+    }
+
+    public CellularAutomata abra(String archivo) throws AutomataException, IOException, ClassNotFoundException {
         if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
         FileInputStream inFile = new FileInputStream(archivo);
         ObjectInputStream inObject = new ObjectInputStream(inFile);
@@ -67,7 +77,15 @@ public class CellularAutomata implements Serializable{
      * Método que guarda un arhivo en lenguaje no natural, según la descripción del objeto
      * @param -File archivo
      */
-    public void guarde(String archivo) throws Exception{
+    public void guarde01(String archivo) throws Exception {
+        if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
+        FileOutputStream outFile = new FileOutputStream(archivo);
+        ObjectOutputStream outObject = new ObjectOutputStream(outFile);
+        outObject.writeObject(this);
+        outObject.close();
+    }
+
+    public void guarde(String archivo) throws AutomataException, IOException {
         if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
         FileOutputStream outFile = new FileOutputStream(archivo);
         ObjectOutputStream outObject = new ObjectOutputStream(outFile);
@@ -85,7 +103,24 @@ public class CellularAutomata implements Serializable{
         if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
     }
 
-    public String importe (String archivo) throws Exception{
+    public String importe01 (String archivo) throws Exception {
+        if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
+        String texto = "";
+        BufferedReader bf = new BufferedReader(new FileReader(archivo));
+        String temp = "";
+        String line = bf.readLine();
+        //String bfRead;
+
+        while (line!= null){
+            //line = line.trim();
+            temp += line + "\n"; //guardar el texto del archivo
+            line = bf.readLine();
+        }
+
+        return temp;
+    }
+
+    public String importe (String archivo) throws AutomataException, IOException {
         if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
         String texto = "";
         BufferedReader bf = new BufferedReader(new FileReader(archivo));
@@ -111,7 +146,24 @@ public class CellularAutomata implements Serializable{
         if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
     }
 
-    public void exporte(String archivo) throws Exception{
+    public void exporte01(String archivo) throws Exception {
+        if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
+        PrintWriter pw = new PrintWriter(new FileOutputStream(archivo));
+        pw.println("Dirección automata : " + this.automata);
+        pw.println("Longitud: " + this.LENGTH);
+        pw.println("Valor posiciones : \n");
+        int i, j;
+        for (i = 0; i < 30; i ++){
+            for (j = 0; j < 30; j ++){
+                if (getItem(i,j) != null) {
+                    pw.println("Posición " + i + " " + j + " \n" + getItem(i, j).toString());
+                }
+            }
+        }
+        pw.close();
+    }
+
+    public void exporte(String archivo) throws AutomataException, FileNotFoundException {
         if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
         PrintWriter pw = new PrintWriter(new FileOutputStream(archivo));
         pw.println("Dirección automata : " + this.automata);

@@ -144,9 +144,13 @@ public class AutomataGUI extends JFrame implements ActionListener{
                     //    1,null);
             //}
         } catch (AutomataException e){
-                System.out.println(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+        } catch (FileNotFoundException e){
+            System.out.println("No se encontró el archivo");
+        } catch (IOException e){
+            System.out.println("El nombre de archivo, el nombre de directorio o la sintaxis de la etiqueta de volumen es incorrecta");
+        } catch (ClassNotFoundException e){
+            System.out.println("Clase no encontrada");
         }
 
     }
@@ -168,8 +172,10 @@ public class AutomataGUI extends JFrame implements ActionListener{
             //}
         } catch (AutomataException e){
             System.out.println(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (FileNotFoundException e){
+            System.out.println("No se encontró el archivo");
+        } catch (IOException e){
+            System.out.println("El nombre de archivo, el nombre de directorio o la sintaxis de la etiqueta de volumen es incorrecta");
         }
 
     }
@@ -191,8 +197,8 @@ public class AutomataGUI extends JFrame implements ActionListener{
             //}
         } catch (AutomataException e){
             System.out.println(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (FileNotFoundException e){
+            System.out.println("No se encontró el archivo");
         }
     }
 
@@ -213,8 +219,10 @@ public class AutomataGUI extends JFrame implements ActionListener{
             //}
         } catch (AutomataException e){
             System.out.println(e.getMessage());
-        } catch (Exception e){
+        } catch (FileNotFoundException e){
             System.out.println("No se encontró el archivo");
+        } catch (IOException e){
+            System.out.println("El nombre de archivo, el nombre de directorio o la sintaxis de la etiqueta de volumen es incorrecta");
         }
 
     }
