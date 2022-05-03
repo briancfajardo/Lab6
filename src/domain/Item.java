@@ -1,5 +1,6 @@
 package domain;
 import java.awt.Color;
+import java.io.Serializable;
 
 /**
  * Item es una interfaz que recoge los comportamientos de los objetos
@@ -11,7 +12,7 @@ import java.awt.Color;
  * @version 19/03/2022
  */
 
-public interface Item{
+public interface Item extends Serializable {
   int ROUND = 1;
   int SQUARE = 2;
   

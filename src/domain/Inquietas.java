@@ -1,5 +1,6 @@
 package domain;
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -11,7 +12,7 @@ import java.util.*;
  * @author Andrea Durán
  * @version 19/03/2022
  */
-public class Inquietas extends Cell
+public class Inquietas extends Cell implements Serializable
 {
     /**
      * Constructor for objects of class Inquietas

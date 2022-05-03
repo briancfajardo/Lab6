@@ -27,6 +27,10 @@ public class CellularAutomata implements Serializable{
             }
         }
         someItems();
+        someItems("indiana", 1,1);
+        change(1,1);
+        createInquieta("agamenon",3,2);
+        createInquieta("venus",10,10);
     }
 
 
@@ -43,6 +47,7 @@ public class CellularAutomata implements Serializable{
         FileInputStream inFile = new FileInputStream(archivo);
         ObjectInputStream inObject = new ObjectInputStream(inFile);
         CellularAutomata nuevo = (CellularAutomata)inObject.readObject();
+        System.out.println(nuevo);
         inObject.close();
         return nuevo;
     }
@@ -100,7 +105,7 @@ public class CellularAutomata implements Serializable{
     /**
      * Define si el item en esa ubicación está vivo
      */
-    public boolean isAlive(int r, int c){
+    public Boolean isAlive(int r, int c){
         if (automata[r][c] != null){
             return automata[r][c].isAlive();
         }

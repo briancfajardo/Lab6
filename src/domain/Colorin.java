@@ -1,5 +1,6 @@
 package domain;
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -10,7 +11,7 @@ import java.util.*;
  * @author Andrea Durán
  * @version 19/03/2022
  */
-public class Colorin extends Cell
+public class Colorin extends Cell implements Serializable
 {
     private String[] colors = {"red", "yellow", "blue", "green","cyan", "orange", "pink", "magenta"};
     private int cont = 0;

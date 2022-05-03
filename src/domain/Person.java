@@ -1,4 +1,5 @@
 package domain;
+import java.io.Serializable;
 import java.util.*;
 import java.awt.Color;
 
@@ -11,7 +12,7 @@ import java.awt.Color;
  * @author Andrea Durán
  * @version 19/03/2022
  */
-public class Person extends Agent implements Item
+public class Person extends Agent implements Item, Serializable
 {
     private char nextState;
     private int nextShape;

@@ -137,8 +137,8 @@ public class AutomataGUI extends JFrame implements ActionListener{
             //File archivosF =archivos.getSelectedFile();
             String nombre = archivos.getSelectedFile()+"";
             automata = automata.abra(nombre);
-            System.out.println(automata.getItem(5,5).isAlive());
             photo.repaint();
+            //System.out.println(b);
             //if (!nombre.equals(null+"")){
               //  JOptionPane.showMessageDialog(this,"El elemento está en construcción, se está guardando un archivo\n" + nombre,"Guardar",
                     //    1,null);
@@ -162,10 +162,10 @@ public class AutomataGUI extends JFrame implements ActionListener{
             String nombre = archivos.getSelectedFile()+"";
             //File archivosF =archivos.getSelectedFile();
             automata.guarde(nombre);
-            if (!nombre.equals(null+"")){
-                JOptionPane.showMessageDialog(this,"El elemento está en construcción, se está guardando un archivo\n" + nombre,"Guardar",
-                        1,null);
-            }
+            //if (!nombre.equals(null+"")){
+              //  JOptionPane.showMessageDialog(this,"El elemento está en construcción, se está guardando un archivo\n" + nombre,"Guardar",
+                //        1,null);
+            //}
         } catch (AutomataException e){
             System.out.println(e.getMessage());
         } catch (Exception e) {
