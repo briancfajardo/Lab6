@@ -107,13 +107,15 @@ public class Cell extends Agent implements Item, Serializable {
         return automata.nulas(column, row).get(2);
     }
 
+    @Override
     public String toString(){
         String texto = "";
         texto += this.getClass() + " ";
         texto += row + " ";
         texto += column + " ";
         texto += state + " ";
-        texto += String.valueOf(nextState) + " ";
+        decide();
+        texto += nextState + " ";
         texto += this.getAge() + " ";
         texto += color;
         return texto;
