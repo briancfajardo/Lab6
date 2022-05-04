@@ -181,6 +181,7 @@ public class AutomataGUI extends JFrame implements ActionListener{
         } catch (Exception e){
             System.out.println("Nombre del archivo inválido");
         }
+        ///knshdiuwbfvywhrfbwbgdywef
 
     }
 
