@@ -194,6 +194,86 @@ public class CellularAutomata implements Serializable{
         return nuevo;
     }
 
+    public CellularAutomata importe03 (String archivo) throws AutomataException, IOException {
+        if (archivo.equals("")) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
+        CellularAutomata nuevo = CellularAutomataSegundo();
+        BufferedReader bf = new BufferedReader(new FileReader(archivo));
+        String line = bf.readLine();
+        Color nuevoColor;
+        int i,j,k;
+        int lineNum = 1;
+        //String bfRead;
+        try{
+            while (line!= null){
+                line = line.trim();
+                String[] elements = line.split(" ");
+
+                try{
+                    i = Integer.parseInt(elements[2]);
+                }catch (NumberFormatException e){
+                    throw new AutomataException(elements[2] + " " + AutomataException.NUMERO_INVALIDO);
+                }
+
+                try{
+                    j = Integer.parseInt(elements[3]);
+                }catch (NumberFormatException e){
+                    throw new AutomataException(elements[3] + " " + AutomataException.NUMERO_INVALIDO);
+                }
+
+                try{
+                    k = Integer.parseInt(elements[6]);;
+                }catch (NumberFormatException e){
+                    throw new AutomataException(elements[6] + " " + AutomataException.NUMERO_INVALIDO);
+                }
+
+                try{
+                    nuevoColor = new Color(Integer.parseInt(elements[7]));
+                } catch (Exception e){
+                    throw new AutomataException(elements[7] + " " + AutomataException.COLOR_INVALIDO);
+                }
+
+                switch (elements[1].replace("domain.", "")) {
+                    case "Cell":
+
+                        automata[i][j] = new Cell(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor);
+                        lineNum++;
+                        break;
+                    case "Colorin":
+                        automata[i][j] = new Colorin(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor);
+                        lineNum++;
+                        break;
+                    case "Conway":
+                        automata[i][j] = new Conway(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor);
+                        lineNum++;
+                        break;
+                    case "Inquietas":
+                        automata[i][j] = new Inquietas(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor);
+                        lineNum++;
+                        break;
+                    case "Person":
+                        automata[i][j] = new Person(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor);
+                        lineNum++;
+                        break;
+                    case "Bulb":
+                        automata[i][j] = new Bulb(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor, elements[8]);
+                        lineNum++;
+                        break;
+                    default:
+                        throw new AutomataException(AutomataException.OBJETO_INVALIDO);
+                }
+                line = bf.readLine();
+            }
+            bf.close();
+        }catch (AutomataException | IOException e){
+            if(e.getMessage().equals(AutomataException.OBJETO_INVALIDO)){
+                throw new AutomataException(AutomataException.COMPILER_ERROR + lineNum + " " + e.getMessage());
+            }
+            throw new AutomataException(AutomataException.COMPILER_ERROR + lineNum + " " + e.getMessage());
+        }
+
+        return nuevo;
+    }
+
     public CellularAutomata importe (String archivo) throws AutomataException, IOException {
         if (archivo.equals("")) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
         CellularAutomata nuevo = CellularAutomataSegundo();
