@@ -34,6 +34,16 @@ public class CellularAutomata implements Serializable{
         someItemBulb("suroeste",0,29);
     }
 
+    public CellularAutomata CellularAutomataSegundo() {
+        automata=new Item[LENGTH][LENGTH];
+        for (int r=0;r<LENGTH;r++){
+            for (int c=0;c<LENGTH;c++){
+                automata[r][c]=null;
+            }
+        }
+        return this;
+    }
+
 
     /**
      * Método que abre un arhivo en lenguaje no natural, según la descripción del objeto
@@ -121,38 +131,147 @@ public class CellularAutomata implements Serializable{
         return temp;
     }
 
-    public String importe02 (String archivo) throws AutomataException, IOException {
+    public CellularAutomata importe02 (String archivo) throws AutomataException, IOException {
         if (archivo.equals("")) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
-        String texto = "";
+        CellularAutomata nuevo = CellularAutomataSegundo();
         BufferedReader bf = new BufferedReader(new FileReader(archivo));
-        String temp = "";
         String line = bf.readLine();
+        Color nuevoColor;
+        int i,j,k;
         //String bfRead;
 
         while (line!= null){
-            //line = line.trim();
-            temp += line + "\n"; //guardar el texto del archivo
+            line = line.trim();
+            String[] elements = line.split(" ");
+            switch (elements[1].replace("domain.", "")) {
+                case "Cell":
+                    nuevoColor = new Color(Integer.parseInt(elements[7]));
+                    i = Integer.parseInt(elements[2]);
+                    j = Integer.parseInt(elements[3]);
+                    k = Integer.parseInt(elements[6]);
+                    automata[i][j] = new Cell(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor);
+                    break;
+                case "Colorin":
+                    nuevoColor = new Color(Integer.parseInt(elements[7]));
+                    i = Integer.parseInt(elements[2]);
+                    j = Integer.parseInt(elements[3]);
+                    k = Integer.parseInt(elements[6]);
+                    automata[i][j] = new Colorin(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor);
+                    break;
+                case "Conway":
+                    nuevoColor = new Color(Integer.parseInt(elements[7]));
+                    i = Integer.parseInt(elements[2]);
+                    j = Integer.parseInt(elements[3]);
+                    k = Integer.parseInt(elements[6]);
+                    automata[i][j] = new Conway(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor);
+                    break;
+                case "Inquietas":
+                    nuevoColor = new Color(Integer.parseInt(elements[7]));
+                    i = Integer.parseInt(elements[2]);
+                    j = Integer.parseInt(elements[3]);
+                    k = Integer.parseInt(elements[6]);
+                    automata[i][j] = new Inquietas(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor);
+                    break;
+                case "Person":
+                    nuevoColor = new Color(Integer.parseInt(elements[7]));
+                    i = Integer.parseInt(elements[2]);
+                    j = Integer.parseInt(elements[3]);
+                    k = Integer.parseInt(elements[6]);
+                    automata[i][j] = new Person(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor);
+                    break;
+                case "Bulb":
+                    nuevoColor = new Color(Integer.parseInt(elements[7]));
+                    i = Integer.parseInt(elements[2]);
+                    j = Integer.parseInt(elements[3]);
+                    k = Integer.parseInt(elements[6]);
+                    automata[i][j] = new Bulb(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor, elements[8]);
+                    break;
+            }
             line = bf.readLine();
         }
+        bf.close();
 
-        return temp;
+        return nuevo;
     }
 
-    public String importe (String archivo) throws AutomataException, IOException {
+    public CellularAutomata importe (String archivo) throws AutomataException, IOException {
         if (archivo.equals("")) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
-        String texto = "";
+        CellularAutomata nuevo = CellularAutomataSegundo();
         BufferedReader bf = new BufferedReader(new FileReader(archivo));
-        String temp = "";
         String line = bf.readLine();
+        Color nuevoColor;
+        int i,j,k;
+        int lineNum = 1;
         //String bfRead;
+        try{
+            while (line!= null){
+                line = line.trim();
+                String[] elements = line.split(" ");
 
-        while (line!= null){
-            //line = line.trim();
-            temp += line + "\n"; //guardar el texto del archivo
-            line = bf.readLine();
+                try{
+                    i = Integer.parseInt(elements[2]);
+                }catch (NumberFormatException e){
+                    throw new AutomataException(elements[2] + " " + AutomataException.NUMERO_INVALIDO);
+                }
+
+                try{
+                    j = Integer.parseInt(elements[3]);
+                }catch (NumberFormatException e){
+                    throw new AutomataException(elements[3] + " " + AutomataException.NUMERO_INVALIDO);
+                }
+
+                try{
+                    k = Integer.parseInt(elements[6]);;
+                }catch (NumberFormatException e){
+                    throw new AutomataException(elements[6] + " " + AutomataException.NUMERO_INVALIDO);
+                }
+
+                try{
+                    nuevoColor = new Color(Integer.parseInt(elements[7]));
+                } catch (Exception e){
+                    throw new AutomataException(elements[7] + " " + AutomataException.COLOR_INVALIDO);
+                }
+
+                switch (elements[1].replace("domain.", "")) {
+                    case "Cell":
+
+                        automata[i][j] = new Cell(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor);
+                        lineNum++;
+                        break;
+                    case "Colorin":
+                        automata[i][j] = new Colorin(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor);
+                        lineNum++;
+                        break;
+                    case "Conway":
+                        automata[i][j] = new Conway(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor);
+                        lineNum++;
+                        break;
+                    case "Inquietas":
+                        automata[i][j] = new Inquietas(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor);
+                        lineNum++;
+                        break;
+                    case "Person":
+                        automata[i][j] = new Person(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor);
+                        lineNum++;
+                        break;
+                    case "Bulb":
+                        automata[i][j] = new Bulb(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor, elements[8]);
+                        lineNum++;
+                        break;
+                    default:
+                        throw new AutomataException(AutomataException.OBJETO_INVALIDO);
+                }
+                line = bf.readLine();
+            }
+            bf.close();
+        }catch (AutomataException | IOException e){
+            if(e.getMessage().equals(AutomataException.OBJETO_INVALIDO)){
+                throw new AutomataException(AutomataException.COMPILER_ERROR + lineNum + " " + e.getMessage());
+            }
+            throw new AutomataException(AutomataException.COMPILER_ERROR + lineNum + " " + e.getMessage());
         }
 
-        return temp;
+        return nuevo;
     }
 
 
@@ -180,6 +299,21 @@ public class CellularAutomata implements Serializable{
     }
 
     public void exporte02(String archivo) throws AutomataException, FileNotFoundException {
+        if (archivo.equals("")) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
+        PrintWriter pw = new PrintWriter(new FileOutputStream(archivo));
+
+        int i, j;
+        for (i = 0; i < 30; i ++){
+            for (j = 0; j < 30; j ++){
+                if (getItem(i,j) != null) {
+                    pw.println(getItem(i, j).toString());
+                }
+            }
+        }
+        pw.close();
+    }
+
+    public void exporte03(String archivo) throws AutomataException, FileNotFoundException {
         if (archivo.equals("")) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
         PrintWriter pw = new PrintWriter(new FileOutputStream(archivo));
 

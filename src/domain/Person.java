@@ -88,7 +88,7 @@ public class Person extends Agent implements Item, Serializable
         decide();
         texto += nextState + " ";
         texto += this.getAge() + " ";
-        texto += color;
+        texto += color.getRGB() + " ";
         texto += shape;
         return texto;
     }

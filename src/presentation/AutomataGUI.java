@@ -217,8 +217,9 @@ public class AutomataGUI extends JFrame implements ActionListener{
             archivos = new JFileChooser();
             archivos.showDialog(this, "Importar");
             String nombre = archivos.getSelectedFile()+"";
-            String texto = automata.importe(nombre);
-            System.out.println(texto);
+            automata = automata.importe(nombre);
+            photo.repaint();
+            //System.out.println(texto);
             //if (!nombre.equals(null+"")){
               //  JOptionPane.showMessageDialog(this,"El elemento está en construcción, se está guardando un archivo\n" + nombre,"Guardar",
                 //        1,null);

@@ -128,7 +128,7 @@ public class Cell extends Agent implements Item, Serializable {
         decide();
         texto += nextState + " ";
         texto += this.getAge() + " ";
-        texto += color;
+        texto += color.getRGB();
         return texto;
     }
 }
