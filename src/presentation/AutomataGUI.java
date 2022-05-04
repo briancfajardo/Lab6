@@ -435,3 +435,5 @@ class PhotoAutomata extends JPanel{
         }
     }
 }
+
+//Camilo es una mala persona :(
