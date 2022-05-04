@@ -147,10 +147,12 @@ public class AutomataGUI extends JFrame implements ActionListener{
             System.out.println(e.getMessage());
         } catch (FileNotFoundException e){
             System.out.println("No se encontró el archivo");
-        } catch (IOException e){
-            System.out.println("El nombre de archivo, el nombre de directorio o la sintaxis de la etiqueta de volumen es incorrecta");
         } catch (ClassNotFoundException e){
             System.out.println("Clase no encontrada");
+        } catch (IOException e){
+            System.out.println("El nombre de archivo, el nombre de directorio o la sintaxis de la etiqueta de volumen es incorrecta");
+        } catch (Exception e){
+            System.out.println("Nombre del archivo inválido");
         }
 
     }
@@ -176,6 +178,8 @@ public class AutomataGUI extends JFrame implements ActionListener{
             System.out.println("No se encontró el archivo");
         } catch (IOException e){
             System.out.println("El nombre de archivo, el nombre de directorio o la sintaxis de la etiqueta de volumen es incorrecta");
+        } catch (Exception e){
+            System.out.println("Nombre del archivo inválido");
         }
 
     }
@@ -199,6 +203,8 @@ public class AutomataGUI extends JFrame implements ActionListener{
             System.out.println(e.getMessage());
         } catch (FileNotFoundException e){
             System.out.println("No se encontró el archivo");
+        } catch (Exception e){
+            System.out.println("Nombre del archivo inválido");
         }
     }
 
@@ -223,6 +229,8 @@ public class AutomataGUI extends JFrame implements ActionListener{
             System.out.println("No se encontró el archivo");
         } catch (IOException e){
             System.out.println("El nombre de archivo, el nombre de directorio o la sintaxis de la etiqueta de volumen es incorrecta");
+        } catch (Exception e){
+            System.out.println("Nombre del archivo inválido");
         }
 
     }
