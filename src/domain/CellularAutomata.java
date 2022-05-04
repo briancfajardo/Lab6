@@ -1,5 +1,7 @@
 package domain;
 import java.io.*;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.awt.Color;
 
@@ -312,43 +314,26 @@ public class CellularAutomata implements Serializable{
                     throw new AutomataException(elements[7] + " " + AutomataException.COLOR_INVALIDO);
                 }
 
-                switch (elements[1].replace("domain.", "")) {
-                    case "Cell":
-
-                        automata[i][j] = new Cell(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor);
-                        lineNum++;
-                        break;
-                    case "Colorin":
-                        automata[i][j] = new Colorin(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor);
-                        lineNum++;
-                        break;
-                    case "Conway":
-                        automata[i][j] = new Conway(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor);
-                        lineNum++;
-                        break;
-                    case "Inquietas":
-                        automata[i][j] = new Inquietas(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor);
-                        lineNum++;
-                        break;
-                    case "Person":
-                        automata[i][j] = new Person(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor);
-                        lineNum++;
-                        break;
-                    case "Bulb":
-                        automata[i][j] = new Bulb(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor, elements[8]);
-                        lineNum++;
-                        break;
-                    default:
-                        throw new AutomataException(AutomataException.OBJETO_INVALIDO);
+                if (elements[1].contains("Bulb")) {
+                    Constructor constructObject = Class.forName(elements[1]).getConstructor(CellularAutomata.class, int.class, int.class, char.class, char.class, int.class, Color.class, String.class);
+                    constructObject.newInstance(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor, elements[8]);
+                }else {
+                    Constructor constructObject = Class.forName(elements[1]).getConstructor(CellularAutomata.class, int.class, int.class, char.class, char.class, int.class, Color.class);
+                    constructObject.newInstance(nuevo, i, j, elements[4].charAt(0), elements[5].charAt(0), k, nuevoColor);
                 }
+
                 line = bf.readLine();
             }
             bf.close();
+
         }catch (AutomataException | IOException e){
             if(e.getMessage().equals(AutomataException.OBJETO_INVALIDO)){
                 throw new AutomataException(AutomataException.COMPILER_ERROR + lineNum + " " + e.getMessage());
             }
             throw new AutomataException(AutomataException.COMPILER_ERROR + lineNum + " " + e.getMessage());
+        } catch (ClassNotFoundException | InvocationTargetException | NoSuchMethodException | InstantiationException |
+                 IllegalAccessException e) {
+            throw new RuntimeException(e);
         }
 
         return nuevo;
