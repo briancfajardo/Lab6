@@ -32,6 +32,17 @@ public class Person extends Agent implements Item, Serializable
         automata.setItem(row,column,(Item)this);
         color=Color.pink;
     }
+
+    public Person(CellularAutomata ac,int row, int column, char state, char nextState, int age, Color color){
+        automata=ac;
+        this.row=row;
+        this.column=column;
+        this.state = state;
+        this.nextState=nextState;
+        this.age = age;
+        automata.setItem(row,column,(Item)this);
+        this.color= color;
+    }
     
     /**
      * @override

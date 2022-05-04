@@ -23,7 +23,10 @@ public class Conway extends Cell implements Serializable
         super.color = Color.blue;
         super.change();
     }
-    
+    public Conway(CellularAutomata ac,int row, int column, char state, char nextState, int age, Color color){
+        super(ac,row, column, state, nextState,age,color);
+
+    }
     /**
      * @override
      * Decide its next state

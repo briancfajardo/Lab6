@@ -23,6 +23,11 @@ public class Colorin extends Cell implements Serializable
         super(ac, row, column);
         super.color = Color.green;
     }
+
+    public Colorin(CellularAutomata ac,int row, int column, char state, char nextState, int age, Color color){
+        super(ac,row, column, state, nextState,age,color);
+
+    }
     
     /**
      * @override

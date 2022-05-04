@@ -46,6 +46,17 @@ public class Cell extends Agent implements Item, Serializable {
         color=Color.red;
         this.name = name;
     }
+
+    public Cell(CellularAutomata ac,int row, int column, char state, char nextState, int age, Color color){
+        automata=ac;
+        this.row=row;
+        this.column=column;
+        this.state = state;
+        this.nextState=nextState;
+        this.age = age;
+        automata.setItem(row,column,(Item)this);
+        this.color= color;
+    }
     
 
     /**Returns the row

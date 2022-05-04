@@ -34,6 +34,17 @@ public class Bulb extends Agent implements Item, Serializable
         color=Color.yellow;
 
     }
+    public Bulb(CellularAutomata ac,int row, int column, char state, char nextState, int age, Color color, String shape){
+        automata=ac;
+        this.row=row;
+        this.column=column;
+        this.state = state;
+        this.nextState=nextState;
+        this.age = age;
+        automata.setItem(row,column,(Item)this);
+        this.shape = shape;
+        this.color=color;
+    }
     
     /**
      * @override
