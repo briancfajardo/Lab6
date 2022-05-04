@@ -83,7 +83,8 @@ public class Bulb extends Agent implements Item, Serializable
         texto += row + " ";
         texto += column + " ";
         texto += state + " ";
-        texto += String.valueOf(nextState) + " ";
+        decide();
+        texto += nextState + " ";
         texto += this.getAge() + " ";
         texto += color;
         texto += shape;
