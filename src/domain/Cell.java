@@ -109,10 +109,13 @@ public class Cell extends Agent implements Item, Serializable {
 
     public String toString(){
         String texto = "";
-        texto += "clase: " + this.getClass() + "\n";
-        texto += "name: " + name + "\n";
-        texto += "nextState: " + String.valueOf(nextState) + "\n";
-        texto += "color: " + color + "\n";
+        texto += this.getClass() + " ";
+        texto += row + " ";
+        texto += column + " ";
+        texto += state + " ";
+        texto += String.valueOf(nextState) + " ";
+        texto += this.getAge() + " ";
+        texto += color;
         return texto;
     }
 }

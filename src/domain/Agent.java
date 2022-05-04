@@ -7,7 +7,7 @@ import java.io.Serializable;
 public abstract class Agent implements Serializable {
     public final static char UNKNOWN='u', ALIVE='a', DEAD='d';
     protected char state;
-    private int age;
+    protected int age;
 
     /**Create a new agent
      * 

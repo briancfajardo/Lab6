@@ -90,6 +90,7 @@ public class CellularAutomata implements Serializable{
         FileOutputStream outFile = new FileOutputStream(archivo);
         ObjectOutputStream outObject = new ObjectOutputStream(outFile);
         outObject.writeObject(this);
+        outObject.flush();
         outObject.close();
     }
 
@@ -166,14 +167,12 @@ public class CellularAutomata implements Serializable{
     public void exporte01(String archivo) throws Exception {
         if (archivo.equals("")) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
         PrintWriter pw = new PrintWriter(new FileOutputStream(archivo));
-        pw.println("Dirección automata : " + this.automata);
-        pw.println("Longitud: " + this.LENGTH);
-        pw.println("Valor posiciones : \n");
+
         int i, j;
         for (i = 0; i < 30; i ++){
             for (j = 0; j < 30; j ++){
                 if (getItem(i,j) != null) {
-                    pw.println("Posición " + i + " " + j + " \n" + getItem(i, j).toString());
+                    pw.println(getItem(i, j).toString());
                 }
             }
         }
@@ -183,14 +182,12 @@ public class CellularAutomata implements Serializable{
     public void exporte02(String archivo) throws AutomataException, FileNotFoundException {
         if (archivo.equals("")) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
         PrintWriter pw = new PrintWriter(new FileOutputStream(archivo));
-        pw.println("Dirección automata : " + this.automata);
-        pw.println("Longitud: " + this.LENGTH);
-        pw.println("Valor posiciones : \n");
+
         int i, j;
         for (i = 0; i < 30; i ++){
             for (j = 0; j < 30; j ++){
                 if (getItem(i,j) != null) {
-                    pw.println("Posición " + i + " " + j + " \n" + getItem(i, j).toString());
+                    pw.println(getItem(i, j).toString());
                 }
             }
         }
@@ -200,14 +197,12 @@ public class CellularAutomata implements Serializable{
     public void exporte(String archivo) throws AutomataException, FileNotFoundException {
         if (archivo.equals("")) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
         PrintWriter pw = new PrintWriter(new FileOutputStream(archivo));
-        pw.println("Dirección automata : " + this.automata);
-        pw.println("Longitud: " + this.LENGTH);
-        pw.println("Valor posiciones : \n");
+
         int i, j;
         for (i = 0; i < 30; i ++){
             for (j = 0; j < 30; j ++){
                 if (getItem(i,j) != null) {
-                    pw.println("Posición " + i + " " + j + " \n" + getItem(i, j).toString());
+                    pw.println(getItem(i, j).toString());
                 }
             }
         }
