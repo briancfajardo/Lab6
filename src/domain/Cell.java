@@ -47,6 +47,18 @@ public class Cell extends Agent implements Item, Serializable {
         this.name = name;
     }
 
+    /**
+     * Segundo constructor de la clase Cell
+     * Contiene todos los parámetros necesarios para duplicar el objeto
+     * @param ac
+     * @param row
+     * @param column
+     * @param state
+     * @param nextState
+     * @param age
+     * @param color
+     *
+     */
     public Cell(CellularAutomata ac,int row, int column, char state, char nextState, int age, Color color){
         automata=ac;
         this.row=row;
@@ -118,6 +130,11 @@ public class Cell extends Agent implements Item, Serializable {
         return automata.nulas(column, row).get(2);
     }
 
+    /**
+     * Método que decide cómo se verá la escritura de un objeto de la clase
+     * Cell cuando se imprima como String
+     * @return String texto
+     */
     @Override
     public String toString(){
         String texto = "";

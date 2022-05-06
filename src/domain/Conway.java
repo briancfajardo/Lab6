@@ -23,6 +23,19 @@ public class Conway extends Cell implements Serializable
         super.color = Color.blue;
         super.change();
     }
+
+    /**
+     * Segundo constructor de la clase Conway
+     * Contiene todos los parámetros necesarios para duplicar el objeto
+     * @param ac
+     * @param row
+     * @param column
+     * @param state
+     * @param nextState
+     * @param age
+     * @param color
+     *
+     */
     public Conway(CellularAutomata ac,int row, int column, char state, char nextState, int age, Color color){
         super(ac,row, column, state, nextState,age,color);
 

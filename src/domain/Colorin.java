@@ -24,6 +24,18 @@ public class Colorin extends Cell implements Serializable
         super.color = Color.green;
     }
 
+    /**
+     * Segundo constructor de la clase Colorin
+     * Contiene todos los parámetros necesarios para duplicar el objeto
+     * @param ac
+     * @param row
+     * @param column
+     * @param state
+     * @param nextState
+     * @param age
+     * @param color
+     *
+     */
     public Colorin(CellularAutomata ac,int row, int column, char state, char nextState, int age, Color color){
         super(ac,row, column, state, nextState,age,color);
 

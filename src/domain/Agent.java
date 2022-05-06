@@ -3,7 +3,11 @@ package domain;
 import java.awt.Color;
 import java.io.Serializable;
 
-
+/** Clase abstracta de un agente
+ * @author Camilo Fajardo, Andrea Duran
+ * @version 04/05/2022
+ *
+ */
 public abstract class Agent implements Serializable {
     public final static char UNKNOWN='u', ALIVE='a', DEAD='d';
     protected char state;

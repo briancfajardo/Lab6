@@ -34,6 +34,19 @@ public class Bulb extends Agent implements Item, Serializable
         color=Color.yellow;
 
     }
+    /**
+     * Segundo constructor de la clase Bulb
+     * Contiene todos los parámetros necesarios para duplicar el objeto
+     * @param ac
+     * @param row
+     * @param column
+     * @param state
+     * @param nextState
+     * @param age
+     * @param color
+     * @param shape
+     *
+     */
     public Bulb(CellularAutomata ac,int row, int column, char state, char nextState, int age, Color color, String shape){
         automata=ac;
         this.row=row;
@@ -88,6 +101,12 @@ public class Bulb extends Agent implements Item, Serializable
         return color;
     }
 
+    /**
+     * Método que decide cómo se verá la escritura de un objeto de la clase
+     * Bulb cuando se imprima como String
+     * @return String texto
+     */
+    @Override
     public String toString(){
         String texto = "";
         texto += this.getClass() + " ";

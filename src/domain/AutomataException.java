@@ -1,5 +1,10 @@
 package domain;
 
+/** Clase de exceciones posibles de la clase CellularAutomata
+ * @author Camilo Fajardo, Andrea Duran
+ * @version 04/05/2022
+ *
+ */
 public class AutomataException extends Exception{
     public static final String AUTOMATA_EXCEPTION = "Nombre del archivo es vacío";
     public static final String NUMERO_INVALIDO = "Es un número inválido";

@@ -130,7 +130,7 @@ public class AutomataGUI extends JFrame implements ActionListener{
      * Genera un JFileChooser
      */
     private void opcionAbir(){
-        System.out.println(automata.getItem(5,5).isAlive());
+        //System.out.println(automata.getItem(5,5).isAlive());
         try {
             archivos = new JFileChooser();
             archivos.showOpenDialog(this);
@@ -252,7 +252,6 @@ public class AutomataGUI extends JFrame implements ActionListener{
         System.exit(0);
 
     }
-
 
 
     @Override

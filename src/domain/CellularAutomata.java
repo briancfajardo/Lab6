@@ -36,6 +36,10 @@ public class CellularAutomata implements Serializable{
         someItemBulb("suroeste",0,29);
     }
 
+    /**
+     * Método que retorna un nuevo Cellular Automata
+     * @retun CellularAutomata
+     */
     public CellularAutomata CellularAutomataSegundo() {
         automata=new Item[LENGTH][LENGTH];
         for (int r=0;r<LENGTH;r++){
@@ -50,11 +54,18 @@ public class CellularAutomata implements Serializable{
     /**
      * Método que abre un arhivo en lenguaje no natural, según la descripción del objeto
      * @param -File archivo
+     * @throws AutomataException
      */
     public void abra00(File archivo) throws AutomataException{
         if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
     }
 
+    /**
+     * Método que abre un arhivo en lenguaje no natural, según la descripción del objeto
+     * @param -File archivo
+     * @throws Exception
+     * @retun CellularAutomata
+     */
     public CellularAutomata abra01(String archivo) throws Exception {
         if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
         FileInputStream inFile = new FileInputStream(archivo);
@@ -65,6 +76,13 @@ public class CellularAutomata implements Serializable{
         return nuevo;
     }
 
+    /**
+     * Método que abre un arhivo en lenguaje no natural, según la descripción del objeto
+     * Como parámetro tiene el nombre del archivo que se abrirá
+     * @param -String archivo
+     * @throws AutomataException, IOException, ClassNotFoundException
+     * @retun CellularAutomata
+     */
     public CellularAutomata abra(String archivo) throws AutomataException, IOException, ClassNotFoundException {
         if (archivo.equals("")) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
         FileInputStream inFile = new FileInputStream(archivo);
@@ -79,6 +97,7 @@ public class CellularAutomata implements Serializable{
     /**
      * Método que guarda un arhivo en lenguaje no natural, según la descripción del objeto
      * @param -File archivo
+     * @throws AutomataException
      */
     public void guarde00(File archivo) throws AutomataException{
         if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
@@ -87,7 +106,7 @@ public class CellularAutomata implements Serializable{
 
     /**
      * Método que guarda un arhivo en lenguaje no natural, según la descripción del objeto
-     * @param -File archivo
+     * @param -String archivo
      */
     public void guarde01(String archivo) throws Exception {
         if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
@@ -97,6 +116,11 @@ public class CellularAutomata implements Serializable{
         outObject.close();
     }
 
+    /**
+     * Método que guarda un arhivo en lenguaje no natural en el archivo con el nombre ingresado
+     * @param -String archivo
+     * @throws AutomataException, IOException
+     */
     public void guarde(String archivo) throws AutomataException, IOException {
         if (archivo.equals("")) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
         FileOutputStream outFile = new FileOutputStream(archivo);
@@ -111,11 +135,19 @@ public class CellularAutomata implements Serializable{
      * Método que importa un arhivo en lenguaje natural, según la
      * descripción del objeto
      * @param -File archivo
+     * @throws AutomataException
      */
     public void importe00 (File archivo) throws AutomataException{
         if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
     }
 
+    /**
+     * Método que importa un arhivo en lenguaje natural, se ingresa el nombre
+     * del archivo a importar y este se abre automáticamente dentro del canvas
+     * @param -String archivo
+     * @throws Exception
+     * @retun String
+     */
     public String importe01 (String archivo) throws Exception {
         if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
         String texto = "";
@@ -133,6 +165,17 @@ public class CellularAutomata implements Serializable{
         return temp;
     }
 
+    /**
+     * Método que importa un arhivo en lenguaje natural, se ingresa el nombre
+     * del archivo a importar y este se abre automáticamente dentro del canvas
+     *
+     * Se tienen los errores especificados y se hace la validación de qué contiene
+     * cada línea y fragmento del código para recrear un nuevo archivo con la información brindada
+     *
+     * @param -String archivo
+     * @throws AutomataException, IOException
+     * @retun CellularAutomata
+     */
     public CellularAutomata importe02 (String archivo) throws AutomataException, IOException {
         if (archivo.equals("")) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
         CellularAutomata nuevo = CellularAutomataSegundo();
@@ -196,6 +239,21 @@ public class CellularAutomata implements Serializable{
         return nuevo;
     }
 
+
+    /**
+     * Método que importa un arhivo en lenguaje natural, se ingresa el nombre
+     * del archivo a importar y este se abre automáticamente dentro del canvas
+     *
+     * Se tienen los errores especificados y se hace la validación de qué contiene
+     * cada línea y fragmento del código para recrear un nuevo archivo con la información brindada
+     *
+     * Sirve como un minicompilador, el cual dice la línea donde hay posibles errores
+     * junto con el mensaje de error correspondiente
+     *
+     * @param -String archivo
+     * @throws AutomataException, IOException
+     * @retun CellularAutomata
+     */
     public CellularAutomata importe03 (String archivo) throws AutomataException, IOException {
         if (archivo.equals("")) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
         CellularAutomata nuevo = CellularAutomataSegundo();
@@ -276,6 +334,23 @@ public class CellularAutomata implements Serializable{
         return nuevo;
     }
 
+    /**
+     * Método que importa un arhivo en lenguaje natural, se ingresa el nombre
+     * del archivo a importar y este se abre automáticamente dentro del canvas
+     *
+     * Se tienen los errores especificados y se hace la validación de qué contiene
+     * cada línea y fragmento del código para recrear un nuevo archivo con la información brindada
+     *
+     * Sirve como un minicompilador, el cual dice la línea donde hay posibles errores
+     * junto con el mensaje de error correspondiente
+     *
+     * Crea según el constructor del tipo de clase, sin especificar un método para cada uno
+     * según los condicionales
+     *
+     * @param -String archivo
+     * @throws AutomataException, IOException
+     * @retun CellularAutomata
+     */
     public CellularAutomata importe (String archivo) throws AutomataException, IOException {
         if (archivo.equals("")) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
         CellularAutomata nuevo = CellularAutomataSegundo();
@@ -341,13 +416,22 @@ public class CellularAutomata implements Serializable{
 
 
     /**
-     * Método que importa un arhivo en lenguaje natural, según la descripción del objeto
+     * Método que exporta un arhivo en lenguaje natural, según la descripción del objeto
      * @param -File archivo
+     * @throws AutomataException
      */
     public void exporte00(File archivo) throws AutomataException{
         if (archivo == null) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
     }
 
+    /**
+     * Método que exporta un arhivo en lenguaje natural, según la descripción del objeto
+     * Para hacer esto, se usa el método sobreescrito toString de cada objeto
+     * de tipo Item
+     *
+     * @param -String archivo nombre del archivo
+     * @throws Exception
+     */
     public void exporte01(String archivo) throws Exception {
         if (archivo.equals("")) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
         PrintWriter pw = new PrintWriter(new FileOutputStream(archivo));
@@ -363,6 +447,14 @@ public class CellularAutomata implements Serializable{
         pw.close();
     }
 
+    /**
+     * Método que exporta un arhivo en lenguaje natural, según la descripción del objeto
+     * Para hacer esto, se usa el método sobreescrito toString de cada objeto
+     * de tipo Item
+     *
+     * @param -String archivo nombre del archivo
+     * @throws AutomataException, FileNotFoundException
+     */
     public void exporte02(String archivo) throws AutomataException, FileNotFoundException {
         if (archivo.equals("")) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
         PrintWriter pw = new PrintWriter(new FileOutputStream(archivo));
@@ -378,6 +470,14 @@ public class CellularAutomata implements Serializable{
         pw.close();
     }
 
+    /**
+     * Método que exporta un arhivo en lenguaje natural, según la descripción del objeto
+     * Para hacer esto, se usa el método sobreescrito toString de cada objeto
+     * de tipo Item
+     *
+     * @param -String archivo nombre del archivo
+     * @throws AutomataException, FileNotFoundException
+     */
     public void exporte03(String archivo) throws AutomataException, FileNotFoundException {
         if (archivo.equals("")) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
         PrintWriter pw = new PrintWriter(new FileOutputStream(archivo));
@@ -393,6 +493,14 @@ public class CellularAutomata implements Serializable{
         pw.close();
     }
 
+    /**
+     * Método que exporta un arhivo en lenguaje natural, según la descripción del objeto
+     * Para hacer esto, se usa el método sobreescrito toString de cada objeto
+     * de tipo Item
+     *
+     * @param -String archivo nombre del archivo
+     * @throws AutomataException, FileNotFoundException
+     */
     public void exporte(String archivo) throws AutomataException, FileNotFoundException {
         if (archivo.equals("")) throw new AutomataException(AutomataException.AUTOMATA_EXCEPTION);
         PrintWriter pw = new PrintWriter(new FileOutputStream(archivo));

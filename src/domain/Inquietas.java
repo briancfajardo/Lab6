@@ -23,6 +23,19 @@ public class Inquietas extends Cell implements Serializable
         super.color = Color.orange;
         //state = Agent.ALIVE;
     }
+
+    /**
+     * Segundo constructor de la clase Inquietas
+     * Contiene todos los parámetros necesarios para duplicar el objeto
+     * @param ac
+     * @param row
+     * @param column
+     * @param state
+     * @param nextState
+     * @param age
+     * @param color
+     *
+     */
     public Inquietas(CellularAutomata ac,int row, int column, char state, char nextState, int age, Color color){
         super(ac,row, column, state, nextState,age,color);
 

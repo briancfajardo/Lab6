@@ -33,6 +33,19 @@ public class Person extends Agent implements Item, Serializable
         color=Color.pink;
     }
 
+    /**
+     * Segundo constructor de la clase Inquietas
+     * Contiene todos los parámetros necesarios para duplicar el objeto
+     * @param ac
+     * @param row
+     * @param column
+     * @param state
+     * @param nextState
+     * @param age
+     * @param color
+     *
+     */
+
     public Person(CellularAutomata ac,int row, int column, char state, char nextState, int age, Color color){
         automata=ac;
         this.row=row;
@@ -79,6 +92,11 @@ public class Person extends Agent implements Item, Serializable
         return color;
     }
 
+    /**
+     * Método que decide cómo se verá la escritura de un objeto de la clase
+     * Person cuando se imprima como String
+     * @return String texto
+     */
     public String toString(){
         String texto = "";
         texto += this.getClass() + " ";
